@@ -1,13 +1,17 @@
-## How to run:
+## Running / Installation guide:
 
-**You need to have both Python and Pygame installed to run this.**
+**You need to have both Python and Pygame installed to run this, if you have both, you can just download this entire thing, extract it and run main.py like normal.**
 
+
+### Installing shit:
 To get Python go here: 
 https://www.python.org/downloads/
 
 Then, to get Pygame go to the terminal or commmand prompt and type: 
 ```pip install pygame```
 
+
+### Things still dont work?:
 *If for some reason you just cannot run the program* (***and you dont get an error message***) *try going to the Python installer and repairing Python.
 If the program still crashes, well, idk too bad i guess you aren't playing the game then (tell me about it and i'll do my best to fix it)*
 
