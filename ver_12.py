@@ -966,3 +966,4 @@ try:
 
 except Exception as e:
   print(f"An unexpected error has occured: {e}")
+  input("")
