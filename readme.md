@@ -4,7 +4,7 @@
 
 <br>
 
-### Installing shit:
+### Installing Python & Pygame:
 To get Python go here: 
 https://www.python.org/downloads/
 
