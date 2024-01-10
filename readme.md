@@ -3,12 +3,14 @@
 **You need to have both Python and Pygame installed to run this, if you have both, you can just download this entire thing, extract it and run main.py like normal.**
 
 
+
 ### Installing shit:
 To get Python go here: 
 https://www.python.org/downloads/
 
 Then, to get Pygame go to the terminal or commmand prompt and type: 
 ```pip install pygame```
+
 
 
 ### Things still dont work?:
