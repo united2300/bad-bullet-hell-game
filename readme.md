@@ -4,7 +4,7 @@
 
 <br>
 
-### Installing Python & Pygame:
+### Installing Python & Pygame (if you haven't already):
 To get Python go here: 
 https://www.python.org/downloads/
 
