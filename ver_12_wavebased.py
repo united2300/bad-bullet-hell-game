@@ -739,6 +739,7 @@ try:
             enemy_list = ["red"] * 10 + ["dark red"] * 7 + ["yellow"] * 5
           if wave == 5:
             enemy_list = ["red"] * 10 + ["black"]
+          spawn_a_wave(enemy_list)
   
       # Draw player's health bar and experience bar
       draw_health_bar(player_x, player_y - 10, player_hp, player_max_hp, BLUE)
