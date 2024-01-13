@@ -193,6 +193,8 @@ try:
   
   wave_defeated = True
   wave = 0
+  spawn_wave = False
+  
   renderinv = False
   
   EnemyCountUp1 = False
@@ -204,6 +206,109 @@ try:
   background_image = pygame.image.load("background.png").convert_alpha()
   
   
+  def spawn_a_wave(enemy_list):
+  
+      edge = random.randint(0, 3)
+  
+      if edge == 0:
+          x = 0
+          y = random.randint(0, HEIGHT)
+      elif edge == 1:
+          x = random.randint(0, WIDTH)
+          y = 0
+      elif edge == 2:
+          x = WIDTH
+          y = random.randint(0, HEIGHT)
+      else:
+          x = random.randint(0, WIDTH)
+          y = HEIGHT
+        
+      for "red" in enemy_list:
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_1_HP,
+              'max_hp': ENEMY_1_HP,
+              'atk': ENEMY_1_ATK,
+              'speed': ENEMY_1_SPEED,
+              'exp_reward': ENEMY_1_EXP_REWARD,
+              'name': enemy1_name,
+          }
+          enemies.append(enemy)
+      for "dark red" in enemy_list:
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_2_HP,
+              'max_hp': ENEMY_2_HP,
+              'atk': ENEMY_2_ATK,
+              'speed': ENEMY_2_SPEED,
+              'exp_reward': ENEMY_2_EXP_REWARD,
+              'name': enemy2_name,
+          }
+          enemies.append(enemy)
+      for "yellow" in enemy_list:
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_3_HP,
+              'max_hp': ENEMY_3_HP,
+              'atk': ENEMY_3_ATK,
+              'speed': ENEMY_3_SPEED,
+              'exp_reward': ENEMY_3_EXP_REWARD,
+              'name': enemy3_name,
+          }
+          enemies.append(enemy)
+      for "orange" in enemy_list:
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_4_HP,
+              'max_hp': ENEMY_4_HP,
+              'atk': ENEMY_4_ATK,
+              'speed': ENEMY_4_SPEED,
+              'exp_reward': ENEMY_4_EXP_REWARD,
+              'name': enemy4_name,
+          }
+          enemies.append(enemy)
+      for "purple" in enemy_list::
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_5_HP,
+              'max_hp': ENEMY_5_HP,
+              'atk': ENEMY_5_ATK,
+              'speed': ENEMY_5_SPEED,
+              'exp_reward': ENEMY_5_EXP_REWARD,
+              'name': enemy5_name,
+          }
+          enemies.append(enemy)
+      for "black" in enemy_list::
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_6_HP,
+              'max_hp': ENEMY_6_HP,
+              'atk': ENEMY_6_ATK,
+              'speed': ENEMY_6_SPEED,
+              'exp_reward': ENEMY_6_EXP_REWARD,
+              'name': enemy6_name,
+          }
+          enemies.append(enemy)
+  
+      for "purple" in enemy_list::
+          enemy = {
+              'x': x,
+              'y': y,
+              'hp': ENEMY_7_HP,
+              'max_hp': ENEMY_7_HP,
+              'atk': ENEMY_7_ATK,
+              'speed': ENEMY_7_SPEED,
+              'exp_reward': ENEMY_7_EXP_REWARD,
+              'name': enemy7_name,
+          }
+          enemies.append(enemy)
+
   
   def forced_spawn(enemy):
   
@@ -740,15 +845,33 @@ try:
             
             
 
-        # enemy colides with player
+          # enemy colides with player
           if abs(enemy['x'] - player_x) < 15 and abs(enemy['y'] - player_y) < 15:
               player_hp -= enemy['atk']
               enemy['hp'] -= player_atk
 
-        # enemy colides with base
+          # enemy colides with base
           if abs(enemy['x'] - base_x) < 15 and abs(enemy['y'] - base_y) < 15:
               base_hp -= enemy['atk']
               enemy['hp'] -= 12
+
+          # player colides with wavebutton thing
+          if abs(wavebutton_x - player_x) < 20 and abs(wavebutton_y - player_y) < 20:
+            if wave_defeated == True:
+              wave += 1
+              wave_defeated = False
+              if wave == 1:
+                enemy_list = ["red"] * 5
+              if wave == 2:
+                enemy_list = ["red"] * 10
+              if wave == 3:
+                enemy_list = ["red"] * 10 + ["dark red"] * 5
+              if wave == 4:
+                enemy_list = ["red"] * 10 + ["dark red"] * 7
+              if wave == 4:
+                enemy_list = ["red"] * 10 + ["dark red"] * 7 + ["yellow"] * 5
+              if wave == 5:
+                enemy_list = ["red"] * 10 + ["black"]
   
           if enemy['hp'] <= 0:
               drop_item()  # Call the function to check for a potion drop
