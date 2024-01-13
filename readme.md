@@ -18,3 +18,7 @@ Then, to get Pygame go to the terminal or commmand prompt and type:
 If the program still crashes, well, idk too bad i guess you aren't playing the game then (tell me about it and i'll do my best to fix it)*
 
 *If you get an error message after running it, screenshot the error and DM it to me so i can fix it.*
+
+
+Made by Sandstorm / united2300.
+Please don't steal my stuff, thanks.
