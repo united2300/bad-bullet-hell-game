@@ -1,4 +1,6 @@
-this is kinda outdated but might still be helpful.
+(this is kinda outdated but might still be helpful.)
+
+made by Sandstorm / united2300
 
 SUMMARY:
 
@@ -86,3 +88,15 @@ you cannot see your own hp when inside the black square.
 
 [Black squares] are often accompanied by a large quantity
 of [Pink squares]. Beware the [Pink square horde].
+
+
+
+
+
+
+
+
+
+
+
+made by sandstorm / united2300
