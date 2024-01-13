@@ -720,7 +720,7 @@ try:
       else:
         wavebutton_x = 99999999
         wavebutton_y = 99999999
-        if enemies = []:
+        if enemies == []:
           wave_defeated = True
       pygame.draw.rect(screen, BLUE, (base_x, base_y, 20, 20)) # player base thing
 
