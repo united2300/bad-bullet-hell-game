@@ -183,6 +183,11 @@ try:
   max_enemies = 40
   if WIDTH + HEIGHT > 200:
     max_enemies += round((WIDTH + HEIGHT) / 100)
+  wavebutton_x = HEIGHT * 0.75
+  wavebutton_y = WIDTH * 0.5
+  base_x = HEIGHT * 0.5
+  base_y = WIDTH * 0.5
+  base_hp = 500
   print (max_enemies)
   print (WIDTH, HEIGHT)
   
@@ -563,56 +568,6 @@ try:
       # Check if we want to spawn enemies
       current_time = pygame.time.get_ticks()
   
-      if current_time - spawn_time > 1000:
-          spawn_enemy()
-  
-      # Bosses!
-  
-      
-      if current_time > 45000 and Spawned_boss_1 == False:
-          Spawned_boss_1 = True
-          #enemies = [] # Kills all enemies.
-          forced_spawn("Black") # Spawn a black
-          Boss_in_map = True
-  
-      if current_time > 100000 and Spawned_boss_2 == False:
-          Spawned_boss_2 = True
-          #enemies = [] # Kills all enemies.
-          forced_spawn("Black") # Spawn one black
-          e = 10
-          while e != 0:
-              e -= 1
-              forced_spawn("Pink") # Spawn 10 pinks
-          Boss_in_map = True
-  
-      if current_time > 150000 and Spawned_boss_3 == False:
-          Spawned_boss_3 = True
-          #enemies = [] # Kills all enemies.
-          forced_spawn("Black") # Spawn one black
-          e = 15
-          while e != 0:
-              e -= 1
-              forced_spawn("Pink") # Spawn 15 pinks
-          Boss_in_map = True
-  
-      if current_time > 200000 and Spawned_boss_4 == False:
-          Spawned_boss_4 = True
-          #enemies = [] # Kills all enemies.
-          e = 1
-          while e != 0:
-              e -= 1
-              forced_spawn("Black") # Spawn 2 blacks
-          e = 15
-          while e != 0:
-              e -= 1
-              forced_spawn("Pink") # Spawn 15 pinks
-          Boss_in_map = True
-  
-      """if Boss_in_map == True:
-          for enemy in enemies:
-            if enemy['name'] == "Red" or enemy['name'] == "Dark red" or enemy['name'] == "Yellow" or enemy['name'] == "Pink" or enemy['name'] == "Orange":
-              enemy['hp'] = 0""" # unused as of now. used to kill all enemies immediately if there's a boss on the map. i forgor why this was bad, prob was buggy as hell all i think. either way i found a better way to do it. i'll keep this here just in case its needed for some reason though.
-  
       # Handle enemy repulsion
       handle_enemy_repulsion()
   
@@ -658,6 +613,10 @@ try:
   
       # Draw player
       pygame.draw.rect(screen, BLUE, (player_x, player_y, 20, 20))
+
+      # "props"
+      pygame.draw.rect(screen, GREEN, (wavebutton_x, wavebutton_y, 20, 20)) # wave start thing
+      pygame.draw.rect(screen, BLUE, (base_x, base_y, 20, 20)) # player base thing
   
       # Draw player's health bar and experience bar
       draw_health_bar(player_x, player_y - 10, player_hp, player_max_hp, BLUE)
@@ -667,50 +626,104 @@ try:
       # Update enemy positions and check for collisions
       for enemy in enemies:
           enemy['speed'] += 0.0005 # gradually increase enemy speed
-        # If the enemy isn't a purple OR the enemy isn't close to the the player move normally.
-          if enemy['name'] != "Purple" or abs(enemy['x'] - player_x) > 150 or abs(enemy['y'] - player_y) > 150:
-            if enemy['x'] < player_x:
-                enemy['x'] += enemy['speed']
+
+          # if the enemy is closer to the base than it is to the player, move towards the base.
+          if distance(enemy['x'], enemy['y'], player_x, player_y) > distance(enemy['x'], enemy['y'], base_x, base_y):
+            
+            # If the enemy isn't a purple OR the enemy isn't close to the the base move normally.
+            if enemy['name'] != "Purple" or abs(enemy['x'] - base_x) > 150 or abs(enemy['y'] - base_y) > 150:
+              if enemy['x'] < base_x:
+                  enemy['x'] += enemy['speed']
+                  if enemy['x'] > base_x:
+                    enemy['x'] = base_x
+      
+              elif enemy['x'] > base_x:
+                  enemy['x'] -= enemy['speed']
+                  if enemy['x'] < base_x:
+                      enemy['x'] = base_x
+      
+              if enemy['y'] < base_y:
+                  enemy['y'] += enemy['speed']
+                  if enemy['y'] > base_y:
+                      enemy['y'] = base_y
+      
+              elif enemy['y'] > base_y:
+                  enemy['y'] -= enemy['speed'] 
+                  if enemy['y'] < base_y:
+                      enemy['y'] = base_y
+                
+                    
+            elif enemy['name'] == "Purple": # Move away from the base
+              # This code is used for the purple enemy
+              if enemy['x'] < base_x:
+                enemy['x'] -= enemy['speed'] * 0.333
+                if enemy['x'] > base_x:
+                  enemy['x'] = base_x
+    
+              elif enemy['x'] > base_x:
+                enemy['x'] += enemy['speed'] * 0.333
+                if enemy['x'] < base_x:
+                    enemy['x'] = base_x
+    
+              if enemy['y'] < base_y:
+                enemy['y'] -= enemy['speed'] * 0.333
+                if enemy['y'] > base_y:
+                    enemy['y'] = base_y
+    
+              elif enemy['y'] > base_y:
+                enemy['y'] += enemy['speed'] * 0.333
+                if enemy['y'] < base_y:
+                    enemy['y'] = base_y
+
+#-----------------------------------------------------------------------------------------------------------------------#
+        
+          # if the enemy is closer to the player than it is to the base, chase the player.
+          if distance(enemy['x'], enemy['y'], player_x, player_y) < distance(enemy['x'], enemy['y'], base_x, base_y):
+            
+            # If the enemy isn't a purple OR the enemy isn't close to the the player move normally.
+            if enemy['name'] != "Purple" or abs(enemy['x'] - player_x) > 150 or abs(enemy['y'] - player_y) > 150:
+              if enemy['x'] < player_x:
+                  enemy['x'] += enemy['speed']
+                  if enemy['x'] > player_x:
+                    enemy['x'] = player_x
+      
+              elif enemy['x'] > player_x:
+                  enemy['x'] -= enemy['speed']
+                  if enemy['x'] < player_x:
+                      enemy['x'] = player_x
+      
+              if enemy['y'] < player_y:
+                  enemy['y'] += enemy['speed']
+                  if enemy['y'] > player_y:
+                      enemy['y'] = player_y
+      
+              elif enemy['y'] > player_y:
+                  enemy['y'] -= enemy['speed'] 
+                  if enemy['y'] < player_y:
+                      enemy['y'] = player_y
+                
+                    
+            elif enemy['name'] == "Purple": # Move away from player
+              # This code is used for the purple enemy
+              if enemy['x'] < player_x:
+                enemy['x'] -= enemy['speed'] * 0.333
                 if enemy['x'] > player_x:
                   enemy['x'] = player_x
     
-            elif enemy['x'] > player_x:
-                enemy['x'] -= enemy['speed']
+              elif enemy['x'] > player_x:
+                enemy['x'] += enemy['speed'] * 0.333
                 if enemy['x'] < player_x:
                     enemy['x'] = player_x
     
-            if enemy['y'] < player_y:
-                enemy['y'] += enemy['speed']
+              if enemy['y'] < player_y:
+                enemy['y'] -= enemy['speed'] * 0.333
                 if enemy['y'] > player_y:
                     enemy['y'] = player_y
     
-            elif enemy['y'] > player_y:
-                enemy['y'] -= enemy['speed'] 
+              elif enemy['y'] > player_y:
+                enemy['y'] += enemy['speed'] * 0.333
                 if enemy['y'] < player_y:
                     enemy['y'] = player_y
-              
-                  
-          elif enemy['name'] == "Purple": # Move away from player
-            # This code is used for the purple enemy
-            if enemy['x'] < player_x:
-              enemy['x'] -= enemy['speed'] * 0.333
-              if enemy['x'] > player_x:
-                enemy['x'] = player_x
-  
-            elif enemy['x'] > player_x:
-              enemy['x'] += enemy['speed'] * 0.333
-              if enemy['x'] < player_x:
-                  enemy['x'] = player_x
-  
-            if enemy['y'] < player_y:
-              enemy['y'] -= enemy['speed'] * 0.333
-              if enemy['y'] > player_y:
-                  enemy['y'] = player_y
-  
-            elif enemy['y'] > player_y:
-              enemy['y'] += enemy['speed'] * 0.333
-              if enemy['y'] < player_y:
-                  enemy['y'] = player_y
   
           if enemy['x'] < 0:
             enemy['x'] = 0
@@ -723,10 +736,16 @@ try:
             enemy['y'] = (HEIGHT - 41)
             
             
-  
+
+        # enemy colides with player
           if abs(enemy['x'] - player_x) < 15 and abs(enemy['y'] - player_y) < 15:
               player_hp -= enemy['atk']
               enemy['hp'] -= player_atk
+
+        # enemy colides with base
+          if abs(enemy['x'] - base_x) < 15 and abs(enemy['y'] - base_y) < 15:
+              base_hp -= enemy['atk']
+              enemy['hp'] -= 12
   
           if enemy['hp'] <= 0:
               drop_item()  # Call the function to check for a potion drop
