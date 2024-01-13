@@ -192,6 +192,7 @@ try:
   print (WIDTH, HEIGHT)
   
   wave_defeated = True
+  wave = 0
   renderinv = False
   
   EnemyCountUp1 = False
