@@ -11,7 +11,11 @@ try:
           import ver_12_wavebased
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
+    print("if you get a 'no module named pygame' error, that means you dont have pygame. go get pygame. read the 'readme.md' file stupid.")
+    print("if you get litteraly any other error DM me and i'll take a look at it.")
     try:
         input("")
     except Exception as e:
         print(f"An unexpected error occured: {e}")
+
+# Made by Sandstorm / united2300
