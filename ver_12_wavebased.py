@@ -223,91 +223,87 @@ try:
           x = random.randint(0, WIDTH)
           y = HEIGHT
         
-      for "red" in enemy_list:
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_1_HP,
-              'max_hp': ENEMY_1_HP,
-              'atk': ENEMY_1_ATK,
-              'speed': ENEMY_1_SPEED,
-              'exp_reward': ENEMY_1_EXP_REWARD,
-              'name': enemy1_name,
-          }
-          enemies.append(enemy)
-      for "dark red" in enemy_list:
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_2_HP,
-              'max_hp': ENEMY_2_HP,
-              'atk': ENEMY_2_ATK,
-              'speed': ENEMY_2_SPEED,
-              'exp_reward': ENEMY_2_EXP_REWARD,
-              'name': enemy2_name,
-          }
-          enemies.append(enemy)
-      for "yellow" in enemy_list:
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_3_HP,
-              'max_hp': ENEMY_3_HP,
-              'atk': ENEMY_3_ATK,
-              'speed': ENEMY_3_SPEED,
-              'exp_reward': ENEMY_3_EXP_REWARD,
-              'name': enemy3_name,
-          }
-          enemies.append(enemy)
-      for "orange" in enemy_list:
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_4_HP,
-              'max_hp': ENEMY_4_HP,
-              'atk': ENEMY_4_ATK,
-              'speed': ENEMY_4_SPEED,
-              'exp_reward': ENEMY_4_EXP_REWARD,
-              'name': enemy4_name,
-          }
-          enemies.append(enemy)
-      for "purple" in enemy_list::
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_5_HP,
-              'max_hp': ENEMY_5_HP,
-              'atk': ENEMY_5_ATK,
-              'speed': ENEMY_5_SPEED,
-              'exp_reward': ENEMY_5_EXP_REWARD,
-              'name': enemy5_name,
-          }
-          enemies.append(enemy)
-      for "black" in enemy_list::
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_6_HP,
-              'max_hp': ENEMY_6_HP,
-              'atk': ENEMY_6_ATK,
-              'speed': ENEMY_6_SPEED,
-              'exp_reward': ENEMY_6_EXP_REWARD,
-              'name': enemy6_name,
-          }
-          enemies.append(enemy)
-  
-      for "purple" in enemy_list::
-          enemy = {
-              'x': x,
-              'y': y,
-              'hp': ENEMY_7_HP,
-              'max_hp': ENEMY_7_HP,
-              'atk': ENEMY_7_ATK,
-              'speed': ENEMY_7_SPEED,
-              'exp_reward': ENEMY_7_EXP_REWARD,
-              'name': enemy7_name,
-          }
-          enemies.append(enemy)
+      for enemy_type in enemy_list:
+        if enemy_type == "red":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_1_HP,
+                'max_hp': ENEMY_1_HP,
+                'atk': ENEMY_1_ATK,
+                'speed': ENEMY_1_SPEED,
+                'exp_reward': ENEMY_1_EXP_REWARD,
+                'name': enemy1_name,
+            }
+        elif enemy_type == "dark red":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_2_HP,
+                'max_hp': ENEMY_2_HP,
+                'atk': ENEMY_2_ATK,
+                'speed': ENEMY_2_SPEED,
+                'exp_reward': ENEMY_2_EXP_REWARD,
+                'name': enemy2_name,
+            }
+        elif enemy_type == "yellow":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_3_HP,
+                'max_hp': ENEMY_3_HP,
+                'atk': ENEMY_3_ATK,
+                'speed': ENEMY_3_SPEED,
+                'exp_reward': ENEMY_3_EXP_REWARD,
+                'name': enemy3_name,
+            }
+        elif enemy_type == "orange":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_4_HP,
+                'max_hp': ENEMY_4_HP,
+                'atk': ENEMY_4_ATK,
+                'speed': ENEMY_4_SPEED,
+                'exp_reward': ENEMY_4_EXP_REWARD,
+                'name': enemy4_name,
+            }
+        elif enemy_type == "purple":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_5_HP,
+                'max_hp': ENEMY_5_HP,
+                'atk': ENEMY_5_ATK,
+                'speed': ENEMY_5_SPEED,
+                'exp_reward': ENEMY_5_EXP_REWARD,
+                'name': enemy5_name,
+            }
+        elif enemy_type == "black":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_6_HP,
+                'max_hp': ENEMY_6_HP,
+                'atk': ENEMY_6_ATK,
+                'speed': ENEMY_6_SPEED,
+                'exp_reward': ENEMY_6_EXP_REWARD,
+                'name': enemy6_name,
+            }
+        elif enemy_type == "pink":
+            enemy = {
+                'x': x,
+                'y': y,
+                'hp': ENEMY_7_HP,
+                'max_hp': ENEMY_7_HP,
+                'atk': ENEMY_7_ATK,
+                'speed': ENEMY_7_SPEED,
+                'exp_reward': ENEMY_7_EXP_REWARD,
+                'name': enemy7_name,
+            }
+        # Add more elif blocks for other enemy types...
+
+        enemies.append(enemy)
 
   
   def forced_spawn(enemy):
