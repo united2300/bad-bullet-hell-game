@@ -183,19 +183,15 @@ try:
   max_enemies = 40
   if WIDTH + HEIGHT > 200:
     max_enemies += round((WIDTH + HEIGHT) / 100)
-  wavebutton_x = HEIGHT * 0.75
-  wavebutton_y = WIDTH * 0.5
-  base_x = HEIGHT * 0.5
-  base_y = WIDTH * 0.5
+  wavebutton_x = WIDTH / 2
+  wavebutton_y = HEIGHT * 0.2
+  base_x = WIDTH / 2
+  base_y = HEIGHT / 2
   base_hp = 500
   print (max_enemies)
   print (WIDTH, HEIGHT)
   
-  Spawned_boss_1 = False
-  Spawned_boss_2 = False
-  Spawned_boss_3 = False
-  Spawned_boss_4 = False
-  Boss_in_map = False
+  wave_defeated = True
   renderinv = False
   
   EnemyCountUp1 = False
@@ -597,8 +593,8 @@ try:
           player_exp -= player_exp_cap
           level_up()
   
-      # Check if the player's HP is less than 1
-      if player_hp < 1:
+      # Check if the player's HP or the base's hp is less than 1
+      if player_hp < 1 or base_hp < 1:
           pygame.quit()
           sys.exit()
   
@@ -615,7 +611,13 @@ try:
       pygame.draw.rect(screen, BLUE, (player_x, player_y, 20, 20))
 
       # "props"
-      pygame.draw.rect(screen, GREEN, (wavebutton_x, wavebutton_y, 20, 20)) # wave start thing
+      if wave_defeated == True:
+        wavebutton_x = WIDTH / 2
+        wavebutton_y = HEIGHT * 0.2
+        pygame.draw.rect(screen, GREEN, (wavebutton_x, wavebutton_y, 20, 20)) # wave start thing
+      else:
+        wavebutton_x = 99999999
+        wavebutton_y = 99999999
       pygame.draw.rect(screen, BLUE, (base_x, base_y, 20, 20)) # player base thing
   
       # Draw player's health bar and experience bar
