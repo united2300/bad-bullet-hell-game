@@ -165,7 +165,7 @@ try:
   enemy4_spawn_prob = 0
   enemy5_spawn_prob = 0
   enemy6_spawn_prob = 0
-  enemy7_spawn_prob = 0.3
+  enemy7_spawn_prob = 0
   enemy8_spawn_prob = 0
   enemy9_spawn_prob = 0
   
@@ -348,48 +348,94 @@ try:
   
   # Modify the spawn_enemy function to spawn enemies only on the edges
   def spawn_enemy():
-      global spawn_time, enemy1_spawn_prob, enemy2_spawn_prob, enemy3_spawn_prob, enemy4_spawn_prob, enemy5_spawn_prob, max_enemies, Boss_in_map, EnemyCountUp1, EnemyCountUp2, EnemyCountUp3, EnemyCountUp4
+      global spawn_time, enemy1_spawn_prob, enemy2_spawn_prob, enemy3_spawn_prob, enemy4_spawn_prob, enemy5_spawn_prob, enemy6_spawn_prob, enemy7_spawn_prob, enemy8_spawn_prob, enemy9_spawn_prob, max_enemies, Boss_in_map, EnemyCountUp1, EnemyCountUp2, EnemyCountUp3, EnemyCountUp4
   
       if len(enemies) < max_enemies and Boss_in_map == False:
           # Adjusting the enemy spawnrates as time goes on
-          if current_time < 10000:
-            enemy2_spawn_prob += 0.001
-          elif current_time > 10000 and current_time < 20000:
-            enemy2_spawn_prob += 0.003
-            enemy3_spawn_prob += 0.001
-          elif current_time > 20000 and current_time < 30000:
-            enemy2_spawn_prob += 0.004
-            enemy3_spawn_prob += 0.002
-            enemy4_spawn_prob += 0.001
-          elif current_time > 30000 and current_time < 45000:
-            enemy2_spawn_prob += 0.006
-            enemy3_spawn_prob += 0.003
-            enemy4_spawn_prob += 0.0002
-            enemy5_spawn_prob += 0.0001
-          elif current_time > 45000 and current_time < 90000:
-            enemy2_spawn_prob += 0.01
-            enemy3_spawn_prob += 0.006
-            enemy4_spawn_prob += 0.0007
-            enemy5_spawn_prob += 0.0005
-          elif current_time > 90000:
-            enemy2_spawn_prob += 0.01
-            enemy3_spawn_prob += 0.01
-            enemy4_spawn_prob += 0.006
-            enemy5_spawn_prob += 0.003
+          if current_time < 7500:
+            enemy1_spawn_prob = 0.8
+            enemy2_spawn_prob = 0
+            enemy3_spawn_prob = 0
+            enemy4_spawn_prob = 0
+            enemy5_spawn_prob = 0
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
+          if current_time > 7500 and current_time < 15000:
+            enemy1_spawn_prob = 0.8
+            enemy2_spawn_prob = 0.2
+            enemy3_spawn_prob = 0
+            enemy4_spawn_prob = 0
+            enemy5_spawn_prob = 0
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0.25
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
+          if current_time > 15000 and current_time < 30000:
+            enemy1_spawn_prob = 0.8
+            enemy2_spawn_prob = 0.3
+            enemy3_spawn_prob = 0.1
+            enemy4_spawn_prob = 0
+            enemy5_spawn_prob = 0
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0.25
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
+          if current_time > 30000 and current_time < 45000:
+            enemy1_spawn_prob = 0.8
+            enemy2_spawn_prob = 0.5
+            enemy3_spawn_prob = 0.3
+            enemy4_spawn_prob = 0.15
+            enemy5_spawn_prob = 0
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0.25
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
+          if current_time > 45000 and current_time < 65000:
+            enemy1_spawn_prob = 0.8
+            enemy2_spawn_prob = 0.6
+            enemy3_spawn_prob = 0.35
+            enemy4_spawn_prob = 0.2
+            enemy5_spawn_prob = 0.1
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0.25
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
+          if current_time > 65000 and current_time < 90000:
+            enemy1_spawn_prob = 0.8
+            enemy2_spawn_prob = 0.7
+            enemy3_spawn_prob = 0.4
+            enemy4_spawn_prob = 0.3
+            enemy5_spawn_prob = 0.175
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0.25
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
+          if current_time > 90000:
+            enemy1_spawn_prob = 0.65
+            enemy2_spawn_prob = 0.8
+            enemy3_spawn_prob = 0.7
+            enemy4_spawn_prob = 0.6
+            enemy5_spawn_prob = 0.2
+            enemy6_spawn_prob = 0
+            enemy7_spawn_prob = 0.25
+            enemy8_spawn_prob = 0
+            enemy9_spawn_prob = 0
   
           # Beefing up the max enemy count for M O R E    D I F F I C U L T Y in the mid to late-game
-          if current_time > 45000 and EnemyCountUp1 == False:
+          if current_time > 3000 and EnemyCountUp1 == False:
             EnemyCountUp1 = True
             max_enemies += 5
               
-          if current_time > 90000 and EnemyCountUp2 == False:
+          if current_time > 60000 and EnemyCountUp2 == False:
             EnemyCountUp2 = True
             max_enemies += 5
               
-          if current_time > 130000 and EnemyCountUp3 == False:
+          if current_time > 90000 and EnemyCountUp3 == False:
             EnemyCountUp3 = True
             max_enemies += 5
-          if current_time > 175000 and EnemyCountUp4 == False:
+          if current_time > 110000 and EnemyCountUp4 == False:
             EnemyCountUp3 = True
             max_enemies += 5
   
