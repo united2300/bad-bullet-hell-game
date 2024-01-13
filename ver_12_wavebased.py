@@ -721,6 +721,24 @@ try:
         wavebutton_x = 99999999
         wavebutton_y = 99999999
       pygame.draw.rect(screen, BLUE, (base_x, base_y, 20, 20)) # player base thing
+
+      # player colides with wavebutton thing
+      if abs(wavebutton_x - player_x) < 20 and abs(wavebutton_y - player_y) < 20:
+        if wave_defeated == True:
+          wave += 1
+          wave_defeated = False
+          if wave == 1:
+            enemy_list = ["red"] * 5
+          if wave == 2:
+            enemy_list = ["red"] * 10
+          if wave == 3:
+            enemy_list = ["red"] * 10 + ["dark red"] * 5
+          if wave == 4:
+            enemy_list = ["red"] * 10 + ["dark red"] * 7
+          if wave == 4:
+            enemy_list = ["red"] * 10 + ["dark red"] * 7 + ["yellow"] * 5
+          if wave == 5:
+            enemy_list = ["red"] * 10 + ["black"]
   
       # Draw player's health bar and experience bar
       draw_health_bar(player_x, player_y - 10, player_hp, player_max_hp, BLUE)
@@ -850,24 +868,6 @@ try:
           if abs(enemy['x'] - base_x) < 15 and abs(enemy['y'] - base_y) < 15:
               base_hp -= enemy['atk']
               enemy['hp'] -= 12
-
-          # player colides with wavebutton thing
-          if abs(wavebutton_x - player_x) < 20 and abs(wavebutton_y - player_y) < 20:
-            if wave_defeated == True:
-              wave += 1
-              wave_defeated = False
-              if wave == 1:
-                enemy_list = ["red"] * 5
-              if wave == 2:
-                enemy_list = ["red"] * 10
-              if wave == 3:
-                enemy_list = ["red"] * 10 + ["dark red"] * 5
-              if wave == 4:
-                enemy_list = ["red"] * 10 + ["dark red"] * 7
-              if wave == 4:
-                enemy_list = ["red"] * 10 + ["dark red"] * 7 + ["yellow"] * 5
-              if wave == 5:
-                enemy_list = ["red"] * 10 + ["black"]
   
           if enemy['hp'] <= 0:
               drop_item()  # Call the function to check for a potion drop
